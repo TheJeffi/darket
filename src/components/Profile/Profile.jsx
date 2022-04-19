@@ -4,10 +4,9 @@ import css from  './Profile.module.css'
 
 
 function Profile(props) {
-  debugger;
    return (
     <div className='app-wrapper-content'>
-      <ProfileInfo />
+      <ProfileInfo profile={props.profile}/>
       <MyPostsContainer />
     </div>
    )
