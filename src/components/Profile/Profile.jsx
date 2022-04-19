@@ -1,12 +1,13 @@
-import MyPosts from './MyPosts/MyPosts';
+import MyPostsContainer from './MyPosts/MyPostsContainer';
 import ProfileInfo from './MyPosts/ProfileInfo/ProfileInfo';
 import css from  './Profile.module.css'
 
-function Profile() {
+
+function Profile(props) {
    return (
     <div className='app-wrapper-content'>
-      <ProfileInfo />
-      <MyPosts />
+      <ProfileInfo profile={props.profile}/>
+      <MyPostsContainer />
     </div>
    )
 }

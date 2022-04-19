@@ -1,6 +1,6 @@
 .content {
    grid-area: content;
-   background-color:burlywood;
+   background-color:palevioletred;
  }
  
  .content img {
@@ -8,7 +8,7 @@
  }
 
  .item {
-   color: greenyellow;
+   color: forestgreen;
 }
 
 .item img{

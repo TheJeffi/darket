@@ -1,28 +1,26 @@
 import css from './Dialogs.module.css'
 import Message from './Message/Message';
 import DialogItem from './DialogItem/DialogItem';
+import React from 'react';
+
 
 function Dialogs(props) {
 
-   let dialogs = [
-      { id: 1, name: "Богдан" },
-      { id: 2, name: "Ильсаф" },
-      { id: 3, name: "Саша" },
-      { id: 4, name: "Настя" }
-   ];
+   let state = props.dialogsPage;
+   let addMessage = () => {
+      props.addMessage();
+   }
 
-   let messages = [
-      { id: 1, message: "ку как дела" },
-      { id: 2, message: "ку че делаешь" },
-      { id: 3, message: "ку ку" },
-   ];
+   let onMessageChange = (e) => {
+      let text = e.target.value;
+      props.updateNewMessageText(text);
+   }
 
-   let DialogsElements = dialogs
-      .map(dialog => <DialogItem name={dialog.name} id={dialog.id} />);
+   let DialogsElements = state.dialogs.map(dialog => <DialogItem name={dialog.name} id={dialog.id} key={dialog.id}/>);
 
-   let messagesElements = messages
-      .map(message => <Message message={message.message} />)
+   let messagesElements = state.messages.map(message => <Message message={message.message} key={message.id}/>)
 
+   let newMessageText = state.newMessageText;
    return (
       <div className={css.dialogs}>
          <div className={css.dialogsItems}>
@@ -30,6 +28,10 @@ function Dialogs(props) {
          </div>
          <div className={css.messages}>
             {messagesElements}
+            <div>
+               <textarea value={newMessageText} onChange={onMessageChange} placeholder="Введите сообщение.." />
+               <button onClick={addMessage}>Отправить</button>
+            </div>
          </div>
       </div>
    )

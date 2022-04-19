@@ -1,25 +1,34 @@
 import css from './MyPosts.module.css';
 import Post from './Post/Post';
+import React from 'react';
+
+
+
 
 
 function MyPosts(props) {
 
-   
-   let posts = [
-      { id: 1,message: "привет, как дела?", likesCount: 14},
-       {id: 2, message: "hello world", likesCount: 12},
-   ];
+   let postsElement = props.posts.map( post => <Post message={post.message} likesCount={post.likesCount} />);
 
-   let postsElement = posts.map( post => <Post message={post.message} likesCount={post.likesCount} />);
+
+   let onAddPost = () => {
+      props.addPost();
+   }
+
+
+   let onPostChange = (e) => {
+      let text = e.target.value;
+      props.updateNewPostText(text);
+   }
    return (
       <div className={css.postsBlock}>
          <h3>Мои посты</h3>
          <div>
             <div>
-               <textarea name="" id=""></textarea>
+               <textarea value={props.newPostText} onChange={onPostChange}/>
             </div>
             <div>
-               <button>добавить пост</button>
+               <button onClick={onAddPost}>добавить пост</button>
             </div>
          </div>
          <div className={css.posts}>
